@@ -7,10 +7,17 @@ tags: ["typescript", "language", "type-safety", "paved-road"]
 deps: []
 scope:
   applies_to: ["backend", "frontend", "cli", "tooling"]
-  includes: ["**/*.{ts,tsx}", "tsconfig*.json", ".eslintrc*", "eslint.config.*", "biome.*"]
+  includes:
+    [
+      "**/*.{ts,tsx}",
+      "tsconfig*.json",
+      ".eslintrc*",
+      "eslint.config.*",
+      "biome.*",
+    ]
 rules:
   - id: "require-strict-tsconfig"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "command_runner"
       inputs:
@@ -21,7 +28,7 @@ rules:
       hint: "Enable strict, noUncheckedIndexedAccess, and other safety flags per typescript.mdc baseline"
 
   - id: "no-explicit-any"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "regex"
       inputs:
@@ -33,7 +40,7 @@ rules:
       hint: "Replace 'any' with 'unknown' and narrow the type"
 
   - id: "prefer-type-imports"
-    severity: "SHOULD"
+    severity: "warn"
     check:
       type: "regex"
       inputs:
@@ -45,7 +52,7 @@ rules:
       hint: "Use 'import type' for types to avoid runtime weight"
 
   - id: "no-default-exports"
-    severity: "SHOULD"
+    severity: "warn"
     check:
       type: "regex"
       inputs:
@@ -57,7 +64,7 @@ rules:
       hint: "Convert to named export"
 
   - id: "validate-external-inputs"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "command_runner"
       inputs:
@@ -78,7 +85,7 @@ notes: |
   - Type-only imports for tree-shaking
   - Named exports for consistency
   - Input validation at boundaries
-  
+
   See full guidance in the pack's extended documentation.
 
 guidance: |

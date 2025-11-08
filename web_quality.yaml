@@ -7,10 +7,18 @@ tags: ["web", "performance", "a11y", "quality", "paved-road"]
 deps: []
 scope:
   applies_to: ["frontend", "web"]
-  includes: ["**/*.{ts,tsx,js,jsx,css,scss}", "app/**", "public/**", "lighthouserc.json", "lighthouse-budgets.json", "playwright.config.*"]
+  includes:
+    [
+      "**/*.{ts,tsx,js,jsx,css,scss}",
+      "app/**",
+      "public/**",
+      "lighthouserc.json",
+      "lighthouse-budgets.json",
+      "playwright.config.*",
+    ]
 rules:
   - id: "lcp-target"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "command_runner"
       inputs:
@@ -22,7 +30,7 @@ rules:
       hint: "Optimize hero image, reduce TTFB, or prioritize critical resources"
 
   - id: "use-next-image"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "regex"
       inputs:
@@ -34,7 +42,7 @@ rules:
       hint: "Replace <img> with next/image and set width/height or fill + sizes"
 
   - id: "use-next-font"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "regex"
       inputs:
@@ -46,18 +54,18 @@ rules:
       hint: "Use next/font/google or next/font/local instead of @font-face"
 
   - id: "a11y-eslint-required"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "command_runner"
       inputs:
-        command: "jq -e '.devDependencies[\"eslint-plugin-jsx-a11y\"] != null or .dependencies[\"eslint-plugin-jsx-a11y\"] != null' package.json > /dev/null 2>&1"
+        command: 'jq -e ''.devDependencies["eslint-plugin-jsx-a11y"] != null or .dependencies["eslint-plugin-jsx-a11y"] != null'' package.json > /dev/null 2>&1'
         expect_exit_code: 0
       evidence: "Missing eslint-plugin-jsx-a11y"
     autofix:
       hint: "Add eslint-plugin-jsx-a11y and extend plugin:jsx-a11y/recommended"
 
   - id: "a11y-critical-violations"
-    severity: "MUST"
+    severity: "error"
     check:
       type: "command_runner"
       inputs:
@@ -78,7 +86,7 @@ notes: |
   - INP: ≤ 200ms
   - CLS: ≤ 0.10
   - TTFB: ≤ 800ms
-  
+
   Performance budgets (gzipped, initial route):
   - JavaScript: ≤ 150 KB
   - CSS: ≤ 50 KB
