@@ -3,13 +3,28 @@ id: "aligns/base/base-typescript"
 version: "1.0.0"
 summary: "TypeScript strict mode: tight types, comprehensive checks, input validation at boundaries"
 tags: ["typescript", "types", "quality", "paved-road"]
+plugs:
+  slots:
+    tsconfig.file:
+      description: "Path to TypeScript configuration file"
+      format: file
+      required: false
+      example: "tsconfig.json"
+    lint.cmd:
+      description: "Command to run TypeScript type checking"
+      format: command
+      required: false
+      example: "pnpm tsc --noEmit"
+# Overlay hints:
+# - severity: commonly upgraded to "error" for strict type safety enforcement
+# - check.inputs: adjust strictness levels per project needs
 ---
 
 # TypeScript Strict Mode Guide
 
 TypeScript standards: strict mode, comprehensive type coverage, input validation at boundaries, and minimal `any`.
 
-## Core Principles
+## Core principles
 
 - **Strict mode is the baseline** - All strict flags enabled
 - **Types are documentation** - Keep types clear and obvious
@@ -46,7 +61,7 @@ Recommended `tsconfig.json`:
 }
 ```
 
-## Type Coverage
+## Type coverage
 
 - **Public APIs fully typed** - Exported functions, classes, types
 - **Avoid `any` at all costs** - Use `unknown` if you must
@@ -82,7 +97,7 @@ export async function getUser(data: unknown): User {
 }
 ```
 
-## Union Types and Discriminated Unions
+## Union types and discriminated unions
 
 **Use discriminated unions for error handling:**
 
@@ -102,7 +117,7 @@ type Result<T> =
   | { type: "error"; error: string };
 ```
 
-## Type Inference
+## Type inference
 
 - **Prefer inference** where type is obvious
 - **Explicit types** for public APIs
@@ -152,7 +167,7 @@ function process(input: unknown): string {
 }
 ```
 
-## Const Assertions
+## Const assertions
 
 - **Use `as const`** for literal types
 - **Preserve shape** - Arrays, objects, strings
@@ -172,7 +187,7 @@ Recommended rules:
 - `@typescript-eslint/explicit-function-return-types` - Error for public APIs
 - `@typescript-eslint/no-non-null-assertion` - Error (use optional chaining)
 
-## Common Patterns
+## Common patterns
 
 ### Optional chaining and nullish coalescing
 
@@ -209,9 +224,15 @@ function handle(result: Result<T>): void {
 }
 ```
 
-## Type Performance
+## Type performance
 
 - **Avoid recursive types** - Can slow type-checking
 - **Avoid deep unions** - Limit to practical depth
 - **Check compilation time** - `tsc --diagnostics`
 - **Use `skipLibCheck`** - Trust library types
+
+## Type checking
+
+Run type checking with: `[[plug:lint.cmd]]`
+
+Configure TypeScript in: `[[plug:tsconfig.file]]`

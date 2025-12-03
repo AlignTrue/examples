@@ -37,9 +37,9 @@ sources:
     path: examples/aligns/testing.yaml
 ```
 
-## Available Packs
+## Available Aligns
 
-### Base Packs (Universal)
+### Base Aligns (Universal)
 
 - `global.yaml` - Universal baseline rules for all projects
 - `docs.yaml` - Documentation standards and README requirements
@@ -50,13 +50,13 @@ sources:
 - `security.yaml` - Security, secrets scanning, and supply chain
 - `rule-authoring.yaml` - Best practices for writing AlignTrue rules
 
-### Stack-Specific Packs
+### Stack-Specific Aligns
 
 - `nextjs_app_router.yaml` - Next.js App Router patterns and best practices
 - `vercel_deployments.yaml` - Vercel deployment configuration and environment management
 - `web_quality.yaml` - Web performance, Core Web Vitals, and accessibility standards
 
-## Pack Format
+## Align Format
 
 All examples use YAML format with the following structure:
 
@@ -76,7 +76,7 @@ rules:
       Clear guidance for AI assistants
 ```
 
-## Sharing Your Own Packs
+## Sharing Your Own Aligns
 
 There is no central catalog registry. Share your aligns by:
 
@@ -84,7 +84,7 @@ There is no central catalog registry. Share your aligns by:
 2. **Sharing files directly** - Users can copy YAML files locally
 3. **Creating a collection** - Organize multiple aligns in a repository
 
-See `examples/aligns.yaml` and `examples/namespaces.yaml` for namespace conventions.
+Each align file contains its own metadata in YAML frontmatter. See the [Creating Aligns](/docs/07-contributing/creating-aligns) guide for namespace conventions.
 
 ## Testing
 
