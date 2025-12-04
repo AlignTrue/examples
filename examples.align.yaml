@@ -1,0 +1,47 @@
+# AlignTrue Manifest - Example Aligns Bundle
+# This manifest bundles example aligns for testing and demonstration
+
+id: aligntrue/examples
+version: "1.0.0"
+summary: "Example aligns demonstrating AlignTrue format for testing"
+author: AlignTrue
+license: CC0-1.0
+repository: https://github.com/AlignTrue/examples
+
+includes:
+  rules:
+    - aligns/global.md
+    - aligns/docs.md
+    - aligns/typescript.md
+    - aligns/testing.md
+    - aligns/tdd.md
+    - aligns/debugging.md
+    - aligns/security.md
+    - aligns/nextjs_app_router.md
+    - aligns/vercel_deployments.md
+    - aligns/web_quality.md
+
+defaults:
+  exporters:
+    - cursor
+    - agents
+    - claude
+  mode: solo
+
+tags:
+  - baseline
+  - typescript
+  - testing
+  - security
+  - nextjs
+  - vercel
+
+compatible_agents:
+  - cursor
+  - claude
+  - github-copilot
+  - cody
+  - continue
+  - windsurf
+  - aider
+
